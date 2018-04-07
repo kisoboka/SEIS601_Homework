@@ -48,9 +48,14 @@ public class Employee {
 	{  
 		/* instance method returns "true" if an employee is eligible for retirement, "false" if not. */
 		/*To be eligible for retirement, the sum of age and years of service needs to be greater than 60 */
-		double sum = age + yearsOfService;  
+		
+		/* double sum = age + yearsOfService;  
 		if (sum > 60) return true;
-		else return false;
+		else return false; */
+		
+		//rev 1.1: shorter code
+		return age + yearsOfService > 60;  
+
 	}
 
 	//The GETTERS
@@ -64,3 +69,10 @@ public class Employee {
 	public void setYearOfService(double newEmployeeYearsOfService){	yearsOfService = newEmployeeYearsOfService;}	 //set employee years of service
 
 }
+
+/* Revision
+ * 1.0 initial submission
+ * 1.1 simplified isEligibleForRetirment implementation: 
+ * return age + yearsOfService > 60
+ * instead of using if-else block
+ *  */

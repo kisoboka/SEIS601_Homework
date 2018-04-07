@@ -1,10 +1,11 @@
 //****************************************************************************************
 //  EmployeeApp.java        SEIS601-02 Foundation Of Software Development Java
 //
-//  Homework - Writing Classes. 
+//  Homework - Array. 
+//  - Use an Employee array to keep the references to all Employee objects created.
 //
 //  Author: Felix Adekola        
-//  Due Date: April 4, 2018 by 5;45pm
+//  Due Date: April 11, 2018 by 5;45pm
 //*****************************************************************************************
 
 import java.util.Scanner;
@@ -13,43 +14,54 @@ public class EmployeeApp {
 	
 	
 	public static void main(String[] args) {
-		   //-----------------------------------------------------------------
-		   //  This is the client class for class Employee.
-		   //  - Ask user for data for 2 employees
-		   //  - Take this user input and invoke the constructor of Employee
-		   //    class, passing the user provided input as arguments.
-		   //  - print the number of Employee objects created
-		   //  - display data for each employee created
-		   //  - specify each employee is eligible for retirement or not
-		   //-----------------------------------------------------------------
+		   /*------------------------------------------------------------------------------------------------------------
+			In the previous assignment, your program only takes two Employee's data and creates two Employee objects. 
+			You need to change that in this assignment. Specifically,
+            - Use an Employee array to keep the references to all Employee objects created.
+            - Ask the user for the number of Employees to be processed. The Employee array needs to accommodate all data. 
+              For example, the user may want to create 10 employee's data. Your Employee array should be able to hold 
+              10 Employee object references. 
+            - Use a loop to ask employee data, initialize each element in the Employee array.
+            - After initializing all elements, print every Employee's information and eligibility for retirement.
+		   --------------------------------------------------------------------------------------------------------------*/
 		
 		String employeeName; int age; double yearsOfService; /*temp variables to store user inputs*/
 		
-		/*Ask user for data for 2 employees */
-		//Ask for emp1 data		
 		Scanner userInput = new Scanner(System.in);
-		System.out.print("Enter Employee 1 name: ");
-		employeeName = userInput.next();
-		System.out.print("Enter Employee 1 age: ");
-		age = userInput.nextInt();
-		System.out.print("Enter Employee 1 years of service: ");
-		yearsOfService = userInput.nextDouble();
-		/*Take this user input and invoke the constructor of Employee*/
-     	Employee emp1 = new Employee(employeeName,age,yearsOfService );
-	
-		//Ask for emp2 data
-		System.out.print("\nEnter Employee 2 name: ");
-		employeeName = userInput.next();
-		System.out.print("Enter Employee 2 age: ");
-		age = userInput.nextInt();
-		System.out.print("Enter Employee 2 years of service: ");
-		yearsOfService = userInput.nextDouble();
-		/*Take this user input and invoke the constructor of Employee*/
-		Employee emp2 = new Employee(employeeName,age,yearsOfService );
 		
-	    System.out.println("\n\nNumebr of Employee objects created: " + emp1.numEmployeeObj);
-	    System.out.println("\nEmployee 1 data:" + "\nName: " + emp1.getName()+ "\nAge: " + emp1.getAge()+ "\nYear Of Service: " + emp1.getYearOfService() + "\nEligible for retirement:" + emp1.isEligibleForRetirement());
-	    System.out.println("\nEmployee 2 data:" + "\nName: " + emp2.getName()+ "\nAge: " + emp2.getAge()+ "\nYear Of Service: " + emp2.getYearOfService() + "\nEligible for retirement:" + emp2.isEligibleForRetirement());
-	   	   
+		System.out.print("\nEnter the number of employee to be processed: ");
+		int NumberOfEmployee = userInput.nextInt();
+		
+		Employee[] empArray = new Employee[NumberOfEmployee];
+		
+		for (int i=0; i<empArray.length; i++)
+		{
+			//Get employee data
+			System.out.print("\nEnter Employee " + Math.addExact(i, 1) + " name: ");
+			employeeName = userInput.next();
+			System.out.print("Enter " + employeeName  + "'s age: ");
+			age = userInput.nextInt();
+			System.out.print("Enter " + employeeName  + "'s years of service: ");
+			yearsOfService = userInput.nextDouble();
+			
+			//Create an object and keep its reference in the empArray
+			empArray[i] = new Employee(employeeName,age,yearsOfService );
+		}
+		
+		System.out.println("\n\nNumebr of Employee objects created: " + Employee.numEmployeeObj);
+		
+		int index = 1;
+		for(Employee e : empArray)
+		{
+			System.out.println("Employee " + index + "'s name: " + e.getName() + 
+			", age: " + e.getAge() + 
+			", year of service : " + e.getYearOfService() +
+			", Eligible for retirement: " + e.isEligibleForRetirement()
+			); //end println
+			index++;
+		}
+	   
+		userInput.close();
+		
 	}//end main
 }//end EmployeeApp 

@@ -39,8 +39,11 @@ public class EmployeeApp {
 			//Get employee data
 			System.out.print("\nEnter Employee " + Math.addExact(i, 1) + " name: ");
 			employeeName = userInput.next();
+			userInput.nextLine();            //clean up the buffer. Necessary if user enter first last
+			
 			System.out.print("Enter " + employeeName  + "'s age: ");
 			age = userInput.nextInt();
+			
 			System.out.print("Enter " + employeeName  + "'s years of service: ");
 			yearsOfService = userInput.nextDouble();
 			

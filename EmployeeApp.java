@@ -25,13 +25,13 @@ public class EmployeeApp {
             - After initializing all elements, print every Employee's information and eligibility for retirement.
 		   --------------------------------------------------------------------------------------------------------------*/
 		
-		String employeeName; int age; double yearsOfService; /*temp variables to store user inputs*/
+		String employeeName; int id, age; double yearsOfService; /*temp variables to store user inputs*/
 		
 		Scanner userInput = new Scanner(System.in);
 		
 		System.out.print("\nEnter the number of employee to be processed: ");
 		int NumberOfEmployee = userInput.nextInt();
-		
+				
 		Employee[] empArray = new Employee[NumberOfEmployee];
 		
 		for (int i=0; i<empArray.length; i++)
@@ -47,8 +47,13 @@ public class EmployeeApp {
 			System.out.print("Enter " + employeeName  + "'s years of service: ");
 			yearsOfService = userInput.nextDouble();
 			
+			System.out.print("Enter " + employeeName  + "'s id: ");
+			id = userInput.nextInt();
+			
 			//Create an object and keep its reference in the empArray
-			empArray[i] = new Employee(employeeName,age,yearsOfService );
+			empArray[i] = new Employee(employeeName,age,yearsOfService,id);
+			
+		
 		}
 		
 		System.out.println("\n\nNumebr of Employee objects created: " + Employee.numEmployeeObj);
@@ -59,12 +64,19 @@ public class EmployeeApp {
 			System.out.println("Employee " + index + "'s name: " + e.getName() + 
 			", age: " + e.getAge() + 
 			", year of service : " + e.getYearOfService() +
-			", Eligible for retirement: " + e.isEligibleForRetirement()
+			", Eligible for retirement: " + e.isEligibleForRetirement() +
+			", id: " + e.getID()
 			); //end println
 			index++;
 		}
+		
+		System.out.println("\nEmployee object at index 0 and index 1 are the same: " + empArray[0].equals(empArray[1]));
+		System.out.println("Employee object at index 1 and index 2 are the same: " + empArray[1].equals(empArray[2]));
+		System.out.println("Employee object at index 0 and index 2 are the same: " + empArray[0].equals(empArray[2]));
 	   
 		userInput.close();
 		
 	}//end main
 }//end EmployeeApp 
+/*Revision
+ * 1.3 Inheritance: add id to align with Employee.java interface*/
